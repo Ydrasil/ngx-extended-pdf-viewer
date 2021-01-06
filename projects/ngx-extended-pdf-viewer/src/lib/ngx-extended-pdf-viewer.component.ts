@@ -596,8 +596,8 @@ export class NgxExtendedPdfViewerComponent implements OnInit, AfterViewInit, OnC
     if (!window['pdfjs-dist/build/pdf']) {
       setTimeout(() => this.loadViewer(), 25);
     } else {
-      const isIE = !!(<any>window).MSInputMethodContext && !!(<any>document).documentMode;
-      const isEdge = /Edge\/\d./i.test(navigator.userAgent);
+      const isIE = typeof window !== 'undefined' && !!(<any>window).MSInputMethodContext && !!(<any>document).documentMode;
+      const isEdge = typeof navigator !== 'undefined' && /Edge\/\d./i.test(navigator.userAgent);
       const isIOs12OrBelow = this.iOSVersionRequiresES5();
       const needsES5 = typeof ReadableStream === 'undefined' || typeof Promise['allSettled'] === 'undefined';
       const suffix = this.minifiedJSLibraries ? '.min.js' : '.js';
